@@ -74,11 +74,11 @@ class Model:
         
         delta_W = np.dot(np.transpose(inputs), (probabilities - y))
         delta_W = delta_W / labels.size
-        delta_W = self.learning_rate * delta_W
+        delta_W = self.learning_rate * delta_W * -1.0
         
         delta_b = probabilities - y
         delta_b = np.mean(delta_b, axis=0)
-        delta_b = self.learning_rate * delta_b
+        delta_b = self.learning_rate * delta_b * -1.0
         return (delta_W, delta_b)
     
     def accuracy(self, probabilities, labels):
@@ -116,7 +116,7 @@ def train(model, train_inputs, train_labels):
     '''
     increment = model.batch_size
     batch_losses = []
-    for i in range(train_lables.size / increment):
+    for i in range(int(train_labels.size / increment)):
         batch_inputs = train_inputs[i*increment:(i+1)*increment, ]
         batch_labels = train_labels[i*increment:(i+1)*increment]
         probabilities = model.call(batch_inputs)
@@ -209,7 +209,7 @@ def main():
     train(m, train_inputs, train_labels)
     
     # TODO: Test the accuracy by calling test() after running train()
-    test(m, test_inputs, test_labels)
+    print(test(m, test_inputs, test_labels))
 
     # TODO: Visualize the data by using visualize_results()
     #visualize_results()
