@@ -69,7 +69,7 @@ class Model:
         :param labels: true labels
         :return: gradient for weights,and gradient for biases
         """
-        y = np.zeros((labels.size, labels.max()+1))
+        y = np.zeros((labels.size, self.num_classes))
         y[np.arange(labels.size), labels] = 1.0
         
         delta_W = np.dot(np.transpose(inputs), (probabilities - y))
