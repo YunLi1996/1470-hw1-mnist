@@ -23,8 +23,9 @@ def get_data(inputs_file_path, labels_file_path, num_examples):
     with open(inputs_file_path, 'rb') as f, gzip.GzipFile(fileobj=f) as bytestreami:
         bytestreami.read(16) #header
         inputs_content = bytestreami.read(num_examples * 28 * 28)
-        inputs = np.frombuffer(inputs_content, dtype=np.float32)
+        inputs = np.frombuffer(inputs_content, dtype=np.uint8)
         inputs = inputs/255.0
+        inputs = inputs.astype(np.float32)
         inputs = np.reshape(inputs, (num_examples, 28 * 28))
     with open(labels_file_path, 'rb') as f, gzip.GzipFile(fileobj=f) as bytestreaml:
         bytestreaml.read(8) #header
