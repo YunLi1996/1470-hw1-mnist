@@ -202,17 +202,14 @@ def main():
     test_inputs = test_data[0]
     test_labels = test_data[1]
     
-    # TODO: Create Model
     m = Model()
-    
-    # TODO: Train model by calling train() ONCE on all data
     train(m, train_inputs, train_labels)
-    
-    # TODO: Test the accuracy by calling test() after running train()
     print(test(m, test_inputs, test_labels))
-
-    # TODO: Visualize the data by using visualize_results()
-    #visualize_results()
+    
+    sample_inputs = test_inputs[0:10, ]
+    sample_labels = test_labels[0:10]
+    sample_probabilities = m.call(sample_inputs)
+    visualize_results(sample_inputs, sample_probabilities, sample_labels)
     
 if __name__ == '__main__':
     main()
