@@ -1,1 +1,5 @@
 README
+The following model is an implementation of a single-layer multi-class neural network classifier for handwritten digits in the MNIST dataset.
+
+The model has an accuracy of 0.9053.
+There are no known bugs.
